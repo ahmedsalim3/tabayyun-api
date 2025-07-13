@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Check Website | Tabayyun API{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h2 class="page-title">Tabayyun API</h2>
+    <form method="post" action="/check">
+        <input type="text" name="website" placeholder="Enter website URL" class="form-input">
+        <button type="submit" class="submit-button">Check</button>
+    </form>
+</div>
+{% endblock %} 
