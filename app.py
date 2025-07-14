@@ -13,7 +13,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     """home page"""
-    return render_template("index.html")
+    return render_template("app.html")
 
 
 @app.route("/check", methods=["POST"])
@@ -55,7 +55,7 @@ def check():
         formatted = utils.format_data(result)
 
         if formatted:
-            return render_template("result.html", data=formatted)
+            return render_template("app.html", data=formatted)
         else:
             return jsonify({"error": "Invalid response format from API"}), 500
 

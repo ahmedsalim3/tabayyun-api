@@ -159,15 +159,6 @@ def check_website(website, api_key):
         risk_info = formatted["risk_info"]
         html_output = f"""
         <div class="main-container">
-            <h2 class="page-title">Result for: {formatted['website']}</h2>
-            <div class="risk-section">
-                <span class="risk-icon">{risk_info['icon']}</span>
-                <span class="risk-text risk-{formatted['risk_protocol'].lower()}">Risk: {formatted['risk_protocol']}</span>
-            </div>
-            <div class="info-row"><b>Organization:</b> {formatted['organization']['name_en']} / {formatted['organization']['name_ar']}</div>
-            <div class="info-row"><b>Sector:</b> {formatted['sector']['name_en']} / {formatted['sector']['name_ar']}</div>
-            <div class="info-row"><b>Created At:</b> {formatted['created_at']}</div>
-            <div class="info-row"><b>Belongs To:</b> {formatted['belongs_to']}</div>
             <div class="arabic-text-box">{formatted['arabic_text']}</div>
         </div>
         """
@@ -207,47 +198,10 @@ with gr.Blocks(css=css, title="Tabayyun API") as demo:
     output_html = gr.HTML(label="Results")
     output_json = gr.JSON(label="Raw JSON Data", visible=False)
 
-    with gr.Column():
-        with gr.Row():
-            show_json_btn = gr.Button(
-                "Download JSON Data", variant="secondary", scale=5
-            )
-            clear_btn = gr.Button("Clear", variant="secondary", scale=5)
-
     def _toggle(show):
         return gr.Textbox(visible=show)
 
-    def download_json(json_data):
-        if not json_data:
-            return "No data to download"
-
-        # Create download link with JavaScript
-        download_html = f"""
-        <script>
-        function downloadJSON() {{
-            const data = `{json_data}`;
-            const blob = new Blob([data], {{ type: 'application/json' }});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'tabayyun_result.json';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }}
-        downloadJSON();
-        </script>
-        <div>Downloading JSON file...</div>
-        """
-        return download_html
-
-    def clear_inputs():
-        return "", "", "", None, gr.Checkbox(value=False)
-
     show_api_key.change(fn=_toggle, inputs=[show_api_key], outputs=[api_key])
-
-    show_json_btn.click(fn=download_json, inputs=[output_json], outputs=[output_html])
 
     check_btn.click(
         fn=check_website,
@@ -259,11 +213,6 @@ with gr.Blocks(css=css, title="Tabayyun API") as demo:
         fn=check_website,
         inputs=[website_input, api_key],
         outputs=[output_html, output_json],
-    )
-
-    clear_btn.click(
-        fn=clear_inputs,
-        outputs=[website_input, api_key, output_html, output_json, show_api_key],
     )
 
 if __name__ == "__main__":

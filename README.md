@@ -1,4 +1,5 @@
-# Tabayyun API Web Interface
+Tabayyun API Web Interface
+==========================
 
 <div align="center">
   
@@ -8,18 +9,38 @@
 
 ![Demo App](./static/images/demo.png)
 
-## How to install?
+How to install?
+===============
 
-1. Install dependencies:
+1. Create a virtual environment and activate it:
+
 ```bash
-pip install Flask requests python-dotenv
+python -m venv .venv
 ```
 
-2. Rename [`.env.example`](./.env.example) to `.env`, and add your [API_KEY](./.env.example#L1)
+```bash
+# On Linux
+source .venv/bin/activate
+```
 
-## Usage
+```bash
+# On Windows
+.venv\Scripts\activate
+```
 
-### Web Interface
+Install dependencies:
+=====================
+
+```bash
+pip install -r requirements.txt 
+```
+
+3. Rename [`.env.example`](./.env.example) to `.env`, and add your [API_KEY](./.env.example#L1)
+
+Usage
+=====
+
+### 1. Flask Web Interface
 
 Run the Flask web application:
 
@@ -29,7 +50,11 @@ python app.py
 
 Then open http://localhost:5000
 
-### Gradio App
+### 2. Gradio App
+
+```
+pip install gradio>=4.44.0
+```
 
 Run the Gradio application:
 
@@ -39,7 +64,7 @@ python gradio_app.py
 
 Or try the [live demo](https://huggingface.co/spaces/ahmed-salim/tabayyun-api).
 
-### Command Line
+### 3. Command Line
 
 Use the command-line interface for batch processing:
 
@@ -54,22 +79,15 @@ python main.py facebook.com -o results
 python main.py
 ```
 
-## Repo Structure
+Repo Structure
+==============
 
 ```sh
 ├── app.py                 <- Flask web app
 ├── gradio_app.py          <- Gradio web app
 ├── main.py                <- Command-line script
 ├── templates/             <- HTML templates
-│   ├── base.html
-│   ├── index.html
-│   └── result.html
-├── static/
-│   ├── css/
-│   │   └── style.css
-│   └── js/
-│       ├── app.js
-│       └── result.js
+│   └── app.html
 ├── output/
 └── requirements.txt
 ```

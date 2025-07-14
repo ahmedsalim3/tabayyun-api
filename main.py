@@ -9,7 +9,7 @@ load_dotenv()
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Tabayyun Business API")
     parser.add_argument("website", nargs="?", help="Website to inquire about")
-    parser.add_argument("--output", "-o", default="results", help="default: results")
+    parser.add_argument("--output", "-o", default="output", help="default: output")
 
     args = parser.parse_args()
 

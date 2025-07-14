@@ -18,14 +18,10 @@ EOF
 
 cat > "$TEMP_DIR/README.md" << 'EOF'
 ---
-title: Tabayyun API
-emoji: 🔍
-colorFrom: blue
-colorTo: purple
+title: tabayyun-api
+app_file: gradio_app.py
 sdk: gradio
 sdk_version: 4.0.0
-app_file: app.py
-pinned: false
 ---
 
 # Tabayyun API

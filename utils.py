@@ -33,6 +33,15 @@ def text_breaks(text):
         r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", __protect_urls, text
     )
 
+    # truncate text at special icons (📣📣)
+    if "📣📣" in text:
+        # Find the second occurrence of 📣📣
+        first_icon = text.find("📣📣")
+        if first_icon != -1:
+            second_icon = text.find("📣📣", first_icon + 2)
+            if second_icon != -1:
+                text = text[:second_icon] + "\n📣📣"
+
     # add breaks after punctuation and special chars
     # validated on https://regex101.com/r/YBptwe/1
     breaks = [
