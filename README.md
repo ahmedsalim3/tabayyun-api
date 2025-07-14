@@ -1,5 +1,11 @@
 # Tabayyun API Web Interface
 
+<div align="center">
+  
+[[`Demo App`](https://huggingface.co/spaces/ahmed-salim/tabayyun-api)]
+
+</div>
+
 ![Demo App](./static/images/demo.png)
 
 ## How to install?
@@ -23,6 +29,16 @@ python app.py
 
 Then open http://localhost:5000
 
+### Gradio App
+
+Run the Gradio application:
+
+```bash
+python gradio_app.py
+```
+
+Or try the [live demo](https://huggingface.co/spaces/ahmed-salim/tabayyun-api).
+
 ### Command Line
 
 Use the command-line interface for batch processing:
@@ -42,6 +58,7 @@ python main.py
 
 ```sh
 ├── app.py                 <- Flask web app
+├── gradio_app.py          <- Gradio web app
 ├── main.py                <- Command-line script
 ├── templates/             <- HTML templates
 │   ├── base.html
